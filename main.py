@@ -1,22 +1,19 @@
 import sys
-
 from PySide6 import QtWidgets, QtCore
+from mainWindow import MyKmcontrol
 
-class MyApp(QtWidgets.QMainWindow):
-    def __init__(self, parent=None):
-        super().__init__(parent)
 
-        self.central_widget = QtWidgets.QWidget()
-        self.setCentralWidget(self.central_widget)
-
-        self.grid_layout = QtWidgets.QGridLayout()
-        self.central_widget.setLayout(self.grid_layout)
-        
-        self.label = QtWidgets.QLabel('Teste')
-        self.grid_layout.addWidget(self.label)
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
-    window = MyApp()
+    window = MyKmcontrol()
+
+    welcome = QtWidgets.QLabel("Bem-vindo ao Sistema de Controle de Veículo!")
+    namelabel = QtWidgets.QLabel("Por favor, insira o seu nome: ")
+    nametext = QtWidgets.QLineEdit("")
+
+    window.addWidgetOnLayout(welcome, 1, 1, 1, 2)  # Span across 2 columns
+    window.addWidgetOnLayout(namelabel, 2, 1)
+    window.addWidgetOnLayout(nametext, 2, 2)
     window.show()
     app.exec()
